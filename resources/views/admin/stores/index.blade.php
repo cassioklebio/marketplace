@@ -2,8 +2,10 @@
 
 @section('content')
     <div class="container-fluid">
-        <a href="{{route('admin.stores.create')}}" class="btn btn-lg btn-success">Criar Loja</a>
-        <hr>
+        @if(!$store)
+            <a href="{{route('admin.stores.create')}}" class="btn btn-lg btn-success">Criar Loja</a>
+            <hr>
+        @endif
         <table class="table table-striped">
             <thead>
             <tr>
@@ -13,19 +15,17 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($stores as $store)
                 <tr>
                     <td>{{$store->id}}</td>
                     <td>{{$store->name}}</td>
                     <td>
                         <div class="btn-group">
-
-
                             <div class="3">
                                 <a href="{{route('admin.stores.edit', ['store' => $store->id])}}"
                                    class="btn btn-sm btn-info">
                                     Editar
-                                </a></div>
+                                </a>
+                            </div>
                             <div class="3">
                                 <form action="{{route('admin.stores.destroy', ['store' => $store->id])}}">
                                     @csrf
@@ -37,10 +37,9 @@
                         </div>
                     </td>
                 </tr>
-            @endforeach
-            </tbody>
+           </tbody>
         </table>
-        {{$stores->links()}}
+
     </div>
 
 
