@@ -36,6 +36,9 @@
                     <li class="nav-item @if(request()->is('admin/products*')) active @endif">
                         <a class="nav-link" href="{{route('admin.products.index')}}">Produtos</a>
                     </li>
+                    <li class="nav-item @if(request()->is('admin/categories*')) active @endif">
+                        <a class="nav-link" href="{{route('admin.categories.index')}}">Categorias</a>
+                    </li>
 {{--                    <li class="nav-item dropdown">--}}
 {{--                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
 {{--                            Dropdown--}}
