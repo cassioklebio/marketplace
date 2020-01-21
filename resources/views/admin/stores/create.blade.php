@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="container">
+    <div class="container col-md-9">
         <h1> Criar Loja</h1>
         <hr>
         <form action="{{route('admin.stores.store')}}" method="post">

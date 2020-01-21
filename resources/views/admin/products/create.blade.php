@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="container">
+    <div class="container col-md-9">
         <h1> Cadastrar Produto</h1>
         <hr>
         <form action="{{route('admin.products.store')}}" method="post">
@@ -50,15 +50,15 @@
                 <label>Slug </label>
                 <input type="text" name="slug" class="form-control">
             </div>
-{{--            <div class="form-group">--}}
-{{--                <label>Lojas </label>--}}
-{{--                    <select name="store" class="form-control">--}}
-{{--                        @foreach($stores as $store)--}}
-{{--                            <option value="{{$store->id}}">{{$store->name}}</option>--}}
-{{--                        @endforeach--}}
-{{--                    </select>--}}
+            <div class="form-group">
+                <label>Categorias </label>
+                    <select name="categories[]" id="" class="form-control" multiple>
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+                    </select>
 
-{{--            </div>--}}
+            </div>
 
             <div>
                 <button type="submit" class="btn btn-lg btn-success">Criar Produto</button>

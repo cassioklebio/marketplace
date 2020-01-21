@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Product;
-use App\Store;
+
 use App\Http\Requests\ProductRequest;
-use Illuminate\Http\Request;
+
 
 class ProductController extends Controller
 {
@@ -36,8 +37,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $stores = Store::all(['id','name']);
-        return view('admin.products.create', compact('stores'));
+        $categories = category::all(['id', 'name']);
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
@@ -52,7 +53,9 @@ class ProductController extends Controller
 
         //$store = Store::find($data['store']);
         $store = auth()->user()->store;
-        $store->products()->create($data);
+        //$store->products()->create($data);
+        $product = $store->products()->create($data);
+        $product->categories()->sync($data['categories']);
 
         flash('Produto Criado com sucesso')->success();
         return redirect()->route('admin.products.index');
@@ -79,7 +82,8 @@ class ProductController extends Controller
     public function edit($product)
     {
         $product = $this->product->findOrFail($product);
-        return view('admin.products.edit', compact('product'));
+        $categories = Category::all(['id', 'name']);
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -95,6 +99,8 @@ class ProductController extends Controller
 
         $product = $this->product->find($product);
         $product->update($data);
+        $product->categories()->sync($data['categories']);
+
 
         flash('Produto Atualizado com Sucesso')->success();
         return redirect()->route('admin.products.index');

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container col-md-9">
         @if(!$store)
             <a href="{{route('admin.stores.create')}}" class="btn btn-lg btn-success">Criar Loja</a>
             <hr>

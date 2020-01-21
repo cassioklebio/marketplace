@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid">
+    <div class="container col-md-10">
         <a href="{{route('admin.products.create')}}" class="btn btn-lg btn-success">Cadastrar Produto</a>
         <hr>
         <table class="table table-striped">
